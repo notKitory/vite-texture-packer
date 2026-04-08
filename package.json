@@ -1,0 +1,66 @@
+{
+  "name": "vite-texture-packer",
+  "version": "0.1.0",
+  "description": "A Vite plugin that packs directory-based sprite atlases and emits Phaser-compatible metadata.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README_RU.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "check": "npm run build && npm run test",
+    "prepack": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "atlas",
+    "phaser",
+    "pixijs",
+    "sprites",
+    "texture-packer",
+    "vite"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notKitory/vite-texture-packer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/notKitory/vite-texture-packer/issues"
+  },
+  "homepage": "https://github.com/notKitory/vite-texture-packer#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "vite": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0"
+  },
+  "dependencies": {
+    "maxrects-packer": "^2.7.3",
+    "sharp": "^0.34.5",
+    "throttle-debounce": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.7",
+    "vitest": "^4.1.3"
+  }
+}
