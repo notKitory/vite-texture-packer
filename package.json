@@ -1,14 +1,16 @@
 {
   "name": "vite-texture-packer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Vite plugin that packs directory-based sprite atlases and emits Phaser-compatible metadata.",
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "files": [
