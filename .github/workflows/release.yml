@@ -1,12 +1,10 @@
 name: Release
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
-    inputs:
-      tag:
-        description: "Release tag to publish (example: v0.1.2)"
-        required: true
-        type: string
 
 jobs:
   publish:
