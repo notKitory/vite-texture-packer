@@ -496,6 +496,12 @@ type PackJobState = {
   timer?: NodeJS.Timeout;
 };
 
+/**
+ * Creates the underlying Vite plugin implementation for packing sprite folders into atlases.
+ *
+ * @param options Plugin configuration for source directories, output paths, and atlas limits.
+ * @returns A configured Vite plugin instance.
+ */
 export function createTexturePackerPlugin(options: TexturePackerOptions): Plugin {
   const resolvedOptions = resolveOptions(options);
   const inputRoot = resolvedOptions.inputDir;

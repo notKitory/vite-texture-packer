@@ -1,5 +1,12 @@
 import type { PackedAtlas } from "./types";
 
+/**
+ * Builds Phaser-compatible metadata for a generated atlas.
+ *
+ * @param atlas Generated atlas dimensions and packed frames.
+ * @param packageVersion Version string embedded into the metadata.
+ * @returns JSON-serializable atlas metadata object.
+ */
 export function createAtlasMetadata(atlas: PackedAtlas, packageVersion: string) {
   return {
     textures: [
