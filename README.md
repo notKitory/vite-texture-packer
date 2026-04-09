@@ -93,8 +93,8 @@ public
 interface TexturePackerOptions {
   inputDir: string;
   outputDir: string;
-  width?: number;
-  height?: number;
+  maxWidth?: number;
+  maxHeight?: number;
   padding?: number;
   cacheFile?: string;
 }
@@ -104,8 +104,8 @@ interface TexturePackerOptions {
 | --- | --- | --- |
 | `inputDir` | required | Directory with source images to pack. Each nested folder becomes its own atlas. |
 | `outputDir` | required | Directory where generated `.png` and `.json` files are written, mirroring the `inputDir` structure. |
-| `width` | `2048` | Maximum width of a single atlas PNG. The plugin tries to fit all images from one folder into an atlas no wider than this. |
-| `height` | `2048` | Maximum height of a single atlas PNG. The plugin tries to fit all images from one folder into an atlas no taller than this. |
+| `maxWidth` | `2048` | Maximum allowed width of a single atlas PNG. The plugin tries to fit all images from one folder into an atlas no wider than this. |
+| `maxHeight` | `2048` | Maximum allowed height of a single atlas PNG. The plugin tries to fit all images from one folder into an atlas no taller than this. |
 | `padding` | `2` | Padding in pixels between sprites inside the atlas. |
 | `cacheFile` | `<vite cache dir>/texture-packer.json` | Path to the cache file used to avoid rebuilding unchanged atlases. |
 
@@ -113,4 +113,5 @@ interface TexturePackerOptions {
 
 - `outputDir` cannot be the same as `inputDir` and cannot be nested inside `inputDir`.
 - Only `png`, `jpg`, `jpeg`, and `webp` files are packed.
+- `2048x2048` is the recommended atlas limit for broad browser and mobile GPU compatibility. Larger atlases are more likely to exceed `MAX_TEXTURE_SIZE` on older devices, create VRAM spikes during texture uploads, and slow down scene startup.
 - If source files are removed from a directory, stale generated atlas files are removed automatically.

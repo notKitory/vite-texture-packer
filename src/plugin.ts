@@ -67,12 +67,12 @@ function resolveOptions(options: TexturePackerOptions): ResolvedTexturePackerOpt
     throw new Error('[vite-texture-packer] "cacheFile" must be a non-empty string when provided.');
   }
 
-  const width = options.width ?? 2048;
-  const height = options.height ?? 2048;
+  const maxWidth = options.maxWidth ?? 2048;
+  const maxHeight = options.maxHeight ?? 2048;
   const padding = options.padding ?? 2;
 
-  validatePositiveInteger(width, "width");
-  validatePositiveInteger(height, "height");
+  validatePositiveInteger(maxWidth, "maxWidth");
+  validatePositiveInteger(maxHeight, "maxHeight");
   validateNonNegativeInteger(padding, "padding");
 
   const inputDir = path.resolve(options.inputDir);
@@ -87,8 +87,8 @@ function resolveOptions(options: TexturePackerOptions): ResolvedTexturePackerOpt
   return {
     inputDir,
     outputDir,
-    width,
-    height,
+    maxWidth,
+    maxHeight,
     padding,
     cacheFile: options.cacheFile ? path.resolve(options.cacheFile) : undefined,
   };
@@ -262,7 +262,7 @@ async function packDirectory(
 
   fs.mkdirSync(targetDir, { recursive: true });
 
-  const packer = new MaxRectsPacker(options.width, options.height, options.padding);
+  const packer = new MaxRectsPacker(options.maxWidth, options.maxHeight, options.padding);
   const spriteBuffers = new Map<string, Buffer>();
   const frameNames = new Set<string>();
 
@@ -301,7 +301,7 @@ async function packDirectory(
 
   if (packer.bins.length > 1) {
     throw new Error(
-      `[vite-texture-packer] "${relativePath || "."}" does not fit in a single atlas. Increase width/height or split the source directory.`,
+      `[vite-texture-packer] "${relativePath || "."}" does not fit in a single atlas. Increase maxWidth/maxHeight or split the source directory.`,
     );
   }
 

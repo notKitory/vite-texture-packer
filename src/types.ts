@@ -11,17 +11,25 @@ export interface TexturePackerOptions {
    */
   outputDir: string;
   /**
-   * Maximum width of a generated atlas in pixels.
+   * Maximum allowed width of a generated atlas in pixels.
+   *
+   * `2048` is the recommended upper bound to reduce the risk of WebGL texture
+   * upload failures on older mobile GPUs, excessive VRAM usage, and slower
+   * scene startup caused by large texture uploads.
    *
    * @default 2048
    */
-  width?: number;
+  maxWidth?: number;
   /**
-   * Maximum height of a generated atlas in pixels.
+   * Maximum allowed height of a generated atlas in pixels.
+   *
+   * `2048` is the recommended upper bound to reduce the risk of WebGL texture
+   * upload failures on older mobile GPUs, excessive VRAM usage, and slower
+   * scene startup caused by large texture uploads.
    *
    * @default 2048
    */
-  height?: number;
+  maxHeight?: number;
   /**
    * Spacing between sprites inside the atlas in pixels.
    *
@@ -47,13 +55,13 @@ export interface ResolvedTexturePackerOptions {
    */
   outputDir: string;
   /**
-   * Maximum atlas width in pixels.
+   * Maximum allowed atlas width in pixels.
    */
-  width: number;
+  maxWidth: number;
   /**
-   * Maximum atlas height in pixels.
+   * Maximum allowed atlas height in pixels.
    */
-  height: number;
+  maxHeight: number;
   /**
    * Spacing between sprites inside the atlas in pixels.
    */
